@@ -133,8 +133,8 @@ public class LocalNotification extends CordovaPlugin {
 
         Notification.setDefaultTriggerReceiver(TriggerReceiver.class);
 
-        cordova.getThreadPool().execute(new Runnable() {
-            public void run() {
+        /*cordova.getThreadPool().execute(new Runnable() {
+            public void run() {*/
                 if (action.equals("schedule")) {
                     Log.v("ConsoleLog", "arg = "+args);
                     
@@ -200,8 +200,8 @@ public class LocalNotification extends CordovaPlugin {
                 else if (action.equals("deviceready")) {
                     deviceready();
                 }
-            }
-        });
+          /*  }
+        });*/
 
         return true;
     }

@@ -209,7 +209,7 @@ public class LocalNotification extends CordovaPlugin {
      * @param notifications
      *      Properties for each local notification
      */
-    private void schedule (JSONArray notifications) {
+    public void schedule (JSONArray notifications) {
         for (int i = 0; i < notifications.length(); i++) {
             JSONObject options = notifications.optJSONObject(i);
 
@@ -615,7 +615,7 @@ public class LocalNotification extends CordovaPlugin {
     /**
      * Notification manager instance.
      */
-    private Manager getNotificationMgr() {
+    public Manager getNotificationMgr() {
         return Manager.getInstance(cordova.getActivity());
     }
 

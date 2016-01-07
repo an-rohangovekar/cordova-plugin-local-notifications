@@ -136,8 +136,8 @@ public class LocalNotification extends CordovaPlugin {
         cordova.getThreadPool().execute(new Runnable() {
             public void run() {
                 if (action.equals("schedule")) {
-                    Log.v("inside run schedule");
-                    Log.v(args);
+                    Log.v("ConsoleLog", "arg = "+args);
+                    
                     schedule(args);
                     command.success();
                 }
@@ -214,7 +214,7 @@ public class LocalNotification extends CordovaPlugin {
      */
     private void schedule (JSONArray notifications) {
         
-        Log.v("inside schedule function");
+         Log.v("ConsoleLog", "schedule function");
         for (int i = 0; i < notifications.length(); i++) {
             JSONObject options = notifications.optJSONObject(i);
 

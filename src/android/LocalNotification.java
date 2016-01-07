@@ -37,6 +37,7 @@ import org.json.JSONObject;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+import android.util.Log;
 
 import de.appplant.cordova.plugin.notification.Manager;
 import de.appplant.cordova.plugin.notification.Notification;
@@ -132,9 +133,12 @@ public class LocalNotification extends CordovaPlugin {
 
         Notification.setDefaultTriggerReceiver(TriggerReceiver.class);
 
+        Log.v("inside");
         cordova.getThreadPool().execute(new Runnable() {
             public void run() {
                 if (action.equals("schedule")) {
+                    Log.v("inside run schedule");
+                    Log.v(args);
                     schedule(args);
                     command.success();
                 }
@@ -210,6 +214,8 @@ public class LocalNotification extends CordovaPlugin {
      *      Properties for each local notification
      */
     public void schedule (JSONArray notifications) {
+        
+        Log.v("inside schedule function");
         for (int i = 0; i < notifications.length(); i++) {
             JSONObject options = notifications.optJSONObject(i);
 

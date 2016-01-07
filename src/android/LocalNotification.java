@@ -133,7 +133,6 @@ public class LocalNotification extends CordovaPlugin {
 
         Notification.setDefaultTriggerReceiver(TriggerReceiver.class);
 
-        Log.v("inside");
         cordova.getThreadPool().execute(new Runnable() {
             public void run() {
                 if (action.equals("schedule")) {
@@ -213,7 +212,7 @@ public class LocalNotification extends CordovaPlugin {
      * @param notifications
      *      Properties for each local notification
      */
-    public void schedule (JSONArray notifications) {
+    private void schedule (JSONArray notifications) {
         
         Log.v("inside schedule function");
         for (int i = 0; i < notifications.length(); i++) {
@@ -621,7 +620,7 @@ public class LocalNotification extends CordovaPlugin {
     /**
      * Notification manager instance.
      */
-    public Manager getNotificationMgr() {
+    private Manager getNotificationMgr() {
         return Manager.getInstance(cordova.getActivity());
     }
 

@@ -226,11 +226,27 @@ public class LocalNotification extends CordovaPlugin {
         }
     }*/
     
-    private void schedule (JSONArray notifications) {
+    /*private void schedule (JSONArray notifications) {
         for (int i = 0; i < notifications.length(); i++) {
             JSONArray options = notifications.getJSONArray(i);
             
             Log.v("ConsoleLog", "notificationMGR = "+getNotificationMgr());
+
+            Notification notification =
+                    getNotificationMgr().schedule(options, TriggerReceiver.class);
+
+            fireEvent("schedule", notification);
+        }
+    }*/
+    
+    private void schedule (JSONArray notifications) {
+        for (int i = 0; i < notifications.length(); i++) {
+            
+            try {
+                JSONObject options = notifications.optJSONObject(i);
+            } catch (Exception e){
+                Log.v("", "error in schedule :"+ e.printStackTrace());
+            }
 
             Notification notification =
                     getNotificationMgr().schedule(options, TriggerReceiver.class);

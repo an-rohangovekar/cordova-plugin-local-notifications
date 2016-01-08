@@ -242,19 +242,14 @@ public class LocalNotification extends CordovaPlugin {
     private void schedule (JSONArray notifications) {
         for (int i = 0; i < notifications.length(); i++) {
             JSONObject options;
-             try {
-                    options = notifications.optJSONObject(i);
-                    Log.v("ConsoleLog", "options in schedule :"+options);
-                       
-                 } catch (IOException e) {
-                    e.printStackTrace();
-                    Log.v("ConsoleLog", "options in schedule :"+ e.printStackTrace());
-                }
-                
-                 InstanceID instanceID = InstanceID.getInstance(super.cordova.getActivity());
             
+            options = notifications.optJSONObject(i);
+            Log.v("ConsoleLog", "options in schedule :"+options);
+            
+            Manager manager = manager.getInstance(this, this.cordova.getActivity());
+               
             Notification notification =
-                    instanceID.schedule(options, TriggerReceiver.class);
+            manager.schedule(options, TriggerReceiver.class);
 
             fireEvent("schedule", notification);
         }

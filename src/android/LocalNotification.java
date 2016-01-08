@@ -246,10 +246,17 @@ public class LocalNotification extends CordovaPlugin {
             options = notifications.optJSONObject(i);
             Log.v("ConsoleLog", "options in schedule :"+options);
             
+            Manager manager = Manager.getInstance(this.cordova.getActivity());
             
+            if(manager == null)
+            {
+                Log.v("ConsoleLog", "manager returns null");
+            }
+            else
+            {
             Notification notification =
-            getNotificationMgr().schedule(options, TriggerReceiver.class);
-            
+            manager.schedule(options, TriggerReceiver.class);
+            }
             fireEvent("schedule", notification);
         }
     }

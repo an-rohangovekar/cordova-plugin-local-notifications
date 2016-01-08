@@ -556,6 +556,8 @@ public class LocalNotification extends CordovaPlugin {
         if (notification != null) {
             params = notification.toString() + "," + params;
         }
+        
+         Log.v("ConsoleLog", "params = "+params);
 
         String js = "cordova.plugins.notification.local.core.fireEvent(" +
                 "\"" + event + "\"," + params + ")";

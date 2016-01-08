@@ -216,9 +216,6 @@ public class LocalNotification extends CordovaPlugin {
        
         for (int i = 0; i < notifications.length(); i++) {
             JSONArray options = notifications.optJSONArray(i);
-            
-            Log.v("ConsoleLog", "option value : "+options);
-
             Notification notification =
                     getNotificationMgr().schedule(options, TriggerReceiver.class);
 
@@ -560,7 +557,7 @@ public class LocalNotification extends CordovaPlugin {
         if (notification != null) {
             params = notification.toString() + "," + params;
         }
-
+        Log.v("ConsoleLog", "param : "+params);
         String js = "cordova.plugins.notification.local.core.fireEvent(" +
                 "\"" + event + "\"," + params + ")";
 
@@ -623,7 +620,7 @@ public class LocalNotification extends CordovaPlugin {
      * Notification manager instance.
      */
     private Manager getNotificationMgr() {
-        Log.v("ConsoleLog", "getNotificationMgr :"+ Manager.getInstance(cordova.getActivity()));
+     /*   Log.v("ConsoleLog", "getNotificationMgr :"+ Manager.getInstance(cordova.getActivity()));*/
         return Manager.getInstance(cordova.getActivity());
     }
 

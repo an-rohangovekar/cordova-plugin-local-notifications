@@ -254,10 +254,11 @@ public class LocalNotification extends CordovaPlugin {
             }
             else
             {
-            Notification notification =
-            manager.schedule(options, TriggerReceiver.class);
+                Notification notification =
+                manager.schedule(options, TriggerReceiver.class);
+                fireEvent("schedule", notification);
             }
-            fireEvent("schedule", notification);
+            
         }
     }
 

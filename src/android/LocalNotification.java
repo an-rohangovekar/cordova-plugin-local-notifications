@@ -215,6 +215,8 @@ public class LocalNotification extends CordovaPlugin {
    private void schedule (JSONArray notifications) {
         for (int i = 0; i < notifications.length(); i++) {
             JSONArray options = notifications.getJSONArray(i);
+            
+            Log.v("ConsoleLog", "notification = "+notifications.getJSONArray(i));
 
             Notification notification =
                     getNotificationMgr().schedule(options, TriggerReceiver.class);

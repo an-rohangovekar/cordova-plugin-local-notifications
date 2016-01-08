@@ -530,9 +530,9 @@ public class LocalNotification extends CordovaPlugin {
         }
 
         eventQueue.clear();
-    /**
+   
     }
-
+     /**
      * Fire given event on JS side. Does inform all event listeners.
      *
      * @param event

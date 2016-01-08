@@ -243,7 +243,7 @@ public class LocalNotification extends CordovaPlugin {
         for (int i = 0; i < notifications.length(); i++) {
             JSONObject options = notifications.optJSONObject(i);
             Log.v("ConsoleLog", "notification in schedule :"+options);
-         
+            Log.v("ConsoleLog", "getNotificationMgr :"+getNotificationMgr());
             Notification notification =
                     getNotificationMgr().schedule(options, TriggerReceiver.class);
 
@@ -649,7 +649,7 @@ public class LocalNotification extends CordovaPlugin {
      * Notification manager instance.
      */
     private Manager getNotificationMgr() {
-         Log.v("ConsoleLog", "inside notificationMgr");
+         Log.v("ConsoleLog", "inside notificationMgr" + super.cordova.getActivity());
         return Manager.getInstance(super.cordova.getActivity());
     }
 

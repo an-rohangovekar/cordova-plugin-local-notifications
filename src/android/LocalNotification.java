@@ -650,7 +650,7 @@ public class LocalNotification extends CordovaPlugin {
      */
     private Manager getNotificationMgr() {
          Log.v("ConsoleLog", "inside notificationMgr" + cordova.getActivity());
-        return Manager.getInstance(super.cordova.getActivity());
+        return Manager.getInstance(this.cordova.getActivity());
     }
 
 }

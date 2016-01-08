@@ -213,10 +213,9 @@ public class LocalNotification extends CordovaPlugin {
      *      Properties for each local notification
      */
     private void schedule (JSONArray notifications) {
-        
-         Log.v("ConsoleLog", "schedule function notification" + notification);
+       
         for (int i = 0; i < notifications.length(); i++) {
-            JSONObject options = notifications.optJSONObject(i);
+            JSONArray options = notifications.optJSONArray(i);
             
             Log.v("ConsoleLog", "option value : "+options);
 
@@ -226,7 +225,6 @@ public class LocalNotification extends CordovaPlugin {
             fireEvent("schedule", notification);
         }
         
-        Log.v("ConsoleLog", "final notification : "+notification);
     }
 
     /**
@@ -535,9 +533,9 @@ public class LocalNotification extends CordovaPlugin {
         }
 
         eventQueue.clear();
+    /**
     }
 
-    /**
      * Fire given event on JS side. Does inform all event listeners.
      *
      * @param event
@@ -625,6 +623,7 @@ public class LocalNotification extends CordovaPlugin {
      * Notification manager instance.
      */
     private Manager getNotificationMgr() {
+        Log.v("ConsoleLog", "getNotificationMgr :"+ Manager.getInstance(cordova.getActivity()));
         return Manager.getInstance(cordova.getActivity());
     }
 

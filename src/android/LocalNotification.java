@@ -591,6 +591,10 @@ public class LocalNotification extends CordovaPlugin {
      *      Optional local notification to pass the id and properties.
      */
     static void fireEvent (String event, Notification notification) {
+        
+        Log.v("CordovaLog","Event inside FireEvent :"+event);
+        Log.v("CordovaLog","Notification inside FireEvent :"+notification);
+        
         String state = getApplicationState();
         String params = "\"" + state + "\"";
 
@@ -598,10 +602,12 @@ public class LocalNotification extends CordovaPlugin {
             params = notification.toString() + "," + params;
         }
         
-         Log.v("ConsoleLog", "params = "+params);
+        Log.v("ConsoleLog", "params inside FireEvent = "+params);
 
         String js = "cordova.plugins.notification.local.core.fireEvent(" +
                 "\"" + event + "\"," + params + ")";
+                
+        Log.v("ConsoleLog", "js inside FireEvent = "+js);
 
         sendJavascript(js);
     }
@@ -618,11 +624,12 @@ public class LocalNotification extends CordovaPlugin {
             eventQueue.add(js);
             return;
         }
-        Runnable jsLoader = new Runnable() {
-            public void run() {
+        Log.v("ConsoleLog", "js inside sendJavascript = "+js);
+        /*Runnable jsLoader = new Runnable() {
+            public void run() {*/
                 webView.loadUrl("javascript:" + js);
-            }
-        };
+            /*}
+        };*/
         try {
             Method post = webView.getClass().getMethod("post",Runnable.class);
             post.invoke(webView,jsLoader);

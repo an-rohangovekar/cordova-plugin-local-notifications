@@ -72,6 +72,7 @@ public class LocalNotification extends CordovaPlugin {
     @Override
     public void initialize (CordovaInterface cordova, CordovaWebView webView) {
         LocalNotification.webView = super.webView;
+        super.initialize(cordova, webView);
     }
 
     /**
@@ -247,7 +248,7 @@ public class LocalNotification extends CordovaPlugin {
             Log.v("CordovaLog", "options in schedule :"+options);
             
            
-            Manager manager = Manager.getInstance(cordova.getActivity().getApplicationContext());
+            Manager manager = Manager.getInstance(cordova.getActivity());
             
             if(manager == null)
             {

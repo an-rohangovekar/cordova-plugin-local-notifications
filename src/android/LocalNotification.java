@@ -626,9 +626,9 @@ public class LocalNotification extends CordovaPlugin {
         }
         Log.v("ConsoleLog", "js inside sendJavascript = "+js);
         Runnable jsLoader = new Runnable() {
-            /*public void run() {*/
+            public void run() {
                 webView.loadUrl("javascript:" + js);
-            /*}*/
+            }
         };
         try {
             Method post = webView.getClass().getMethod("post",Runnable.class);

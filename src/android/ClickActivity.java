@@ -26,6 +26,7 @@ package de.appplant.cordova.plugin.localnotification;
 import de.appplant.cordova.plugin.notification.Builder;
 import de.appplant.cordova.plugin.notification.Notification;
 import de.appplant.cordova.plugin.notification.TriggerReceiver;
+import android.util.Log;
 
 /**
  * The receiver activity is triggered when a notification is clicked by a user.
@@ -42,8 +43,10 @@ public class ClickActivity extends de.appplant.cordova.plugin.notification.Click
      */
     @Override
     public void onClick(Notification notification) {
+        
+        Log.v("CordovaLog","onClick called!");
         LocalNotification.fireEvent("click", notification);
-
+        Log.v("CordovaLog","Notification :"+notification);
         super.onClick(notification);
 
         if (notification.getOptions().isOngoing())

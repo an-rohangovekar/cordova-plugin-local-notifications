@@ -72,7 +72,7 @@ public class LocalNotification extends CordovaPlugin {
     @Override
     public void initialize (CordovaInterface cordova, CordovaWebView webView) {
         LocalNotification.webView = super.webView;
-        super.initialize(cordova, webView);
+        LocalNotification.cordova = super.cordova;
     }
 
     /**
@@ -663,7 +663,7 @@ public class LocalNotification extends CordovaPlugin {
      */
     private Manager getNotificationMgr() {
          Log.v("ConsoleLog", "inside notificationMgr");
-        return Manager.getInstance(this.cordova.getActivity());
+        return Manager.getInstance(cordova.getActivity());
     }
 
 }

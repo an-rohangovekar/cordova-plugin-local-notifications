@@ -49,6 +49,7 @@ public class ClickActivity extends de.appplant.cordova.plugin.notification.Click
         LocalNotification.fireEvent("click", notification);
         Log.v("CordovaLog","Notification :"+notification);
         //super.onClick(notification);
+        onClick(notification);
 
         if (notification.getOptions().isOngoing())
             return;

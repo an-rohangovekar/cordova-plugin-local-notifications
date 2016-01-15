@@ -25,7 +25,7 @@ package de.appplant.cordova.plugin.localnotification;
 
 import de.appplant.cordova.plugin.notification.Builder;
 import de.appplant.cordova.plugin.notification.Notification;
-
+import android.util.Log;
 /**
  * The alarm receiver is triggered when a scheduled alarm is fired. This class
  * reads the information in the intent and displays this information in the

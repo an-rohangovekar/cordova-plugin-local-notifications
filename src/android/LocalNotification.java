@@ -597,12 +597,14 @@ public class LocalNotification extends CordovaPlugin {
     private static synchronized void sendJavascript(final String js) {
 
         if (!deviceready) {
+             Log.v("CordovaLog","js inside sendJavascript1:"+js);
             eventQueue.add(js);
             return;
         }
         
         Runnable jsLoader = new Runnable() {
             public void run() {
+                Log.v("CordovaLog","js inside sendJavascript:"+js);
                 webView.loadUrl("javascript:" + js);
             }
         };

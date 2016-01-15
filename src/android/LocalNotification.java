@@ -134,11 +134,9 @@ public class LocalNotification extends CordovaPlugin {
 
         Notification.setDefaultTriggerReceiver(TriggerReceiver.class);
 
-        /*cordova.getThreadPool().execute(new Runnable() {
-            public void run() {*/
+        cordova.getThreadPool().execute(new Runnable() {
+            public void run() {
                 if (action.equals("schedule")) {
-                    Log.v("ConsoleLog", "arg = "+args);
-                    
                     schedule(args);
                     command.success();
                 }
@@ -201,8 +199,8 @@ public class LocalNotification extends CordovaPlugin {
                 else if (action.equals("deviceready")) {
                     deviceready();
                 }
-          /*  }
-        });*/
+            }
+        });
 
         return true;
     }
@@ -242,24 +240,12 @@ public class LocalNotification extends CordovaPlugin {
     
     private void schedule (JSONArray notifications) {
         for (int i = 0; i < notifications.length(); i++) {
-            JSONObject options;
-            
-            options = notifications.optJSONObject(i);
-            Log.v("CordovaLog", "options in schedule :"+options);
-            
-           
+            JSONObject options = notifications.optJSONObject(i);
             Manager manager = Manager.getInstance(cordova.getActivity());
             
-            if(manager == null)
-            {
-                Log.v("ConsoleLog", "manager returns null");
-            }
-            else
-            {
-                Notification notification =
-                manager.schedule(options, TriggerReceiver.class);
-                fireEvent("schedule", notification);
-            }
+            Notification notification =
+            manager.schedule(options, TriggerReceiver.class);
+            fireEvent("schedule", notification);
             
         }
     }
@@ -591,24 +577,14 @@ public class LocalNotification extends CordovaPlugin {
      *      Optional local notification to pass the id and properties.
      */
     static void fireEvent (String event, Notification notification) {
-        
-        Log.v("CordovaLog","Event inside FireEvent :"+event);
-        Log.v("CordovaLog","Notification inside FireEvent :"+notification);
-        
         String state = getApplicationState();
         String params = "\"" + state + "\"";
 
         if (notification != null) {
             params = notification.toString() + "," + params;
         }
-        
-        Log.v("ConsoleLog", "params inside FireEvent = "+params);
-
         String js = "cordova.plugins.notification.local.core.fireEvent(" +
                 "\"" + event + "\"," + params + ")";
-                
-        Log.v("ConsoleLog", "js inside FireEvent = "+js);
-
         sendJavascript(js);
     }
 
@@ -624,7 +600,7 @@ public class LocalNotification extends CordovaPlugin {
             eventQueue.add(js);
             return;
         }
-        Log.v("ConsoleLog", "js inside sendJavascript = "+js);
+        
         Runnable jsLoader = new Runnable() {
             public void run() {
                 webView.loadUrl("javascript:" + js);
@@ -669,7 +645,6 @@ public class LocalNotification extends CordovaPlugin {
      * Notification manager instance.
      */
     private Manager getNotificationMgr() {
-         Log.v("ConsoleLog", "inside notificationMgr");
         return Manager.getInstance(cordova.getActivity());
     }
 

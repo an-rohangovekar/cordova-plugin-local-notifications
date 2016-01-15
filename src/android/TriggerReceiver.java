@@ -46,8 +46,10 @@ public class TriggerReceiver extends de.appplant.cordova.plugin.notification.Tri
     @Override
     public void onTrigger (Notification notification, boolean updated) {
         super.onTrigger(notification, updated);
-
+        Log.v("CordovaLog", "notification from trigger :"+notification);
+        Log.v("CordovaLog", "updated from trigger :"+updated);
         if (!updated) {
+            Log.v("CordovaLog", "Inside if !updated");
             LocalNotification.fireEvent("trigger", notification);
         }
     }

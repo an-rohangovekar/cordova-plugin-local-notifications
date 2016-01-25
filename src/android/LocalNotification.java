@@ -611,7 +611,7 @@ public class LocalNotification extends CordovaPlugin {
                 }
                 else
                 {
-                    LocalNotification.webView = super.webView;
+                    LocalNotification.webView = webView;
                     webView.loadUrl("javascript:" + js);
                 }
             }

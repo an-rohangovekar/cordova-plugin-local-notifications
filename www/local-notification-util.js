@@ -254,14 +254,18 @@ exports.getValueFor = function (options) {
 exports.fireEvent = function (event) {
     var args     = Array.apply(null, arguments).slice(1),
         listener = this._listener[event];
+        
+        alert(JSON.stringify(args));
 
     if (!listener)
         return;
 
+    alert(listener.length);
     for (var i = 0; i < listener.length; i++) {
         var fn    = listener[i][0],
             scope = listener[i][1];
-
+            
+ 
         fn.apply(scope, args);
     }
 };

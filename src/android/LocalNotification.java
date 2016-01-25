@@ -103,11 +103,11 @@ public class LocalNotification extends CordovaPlugin {
     /**
      * The final call you receive before your activity is destroyed.
      */
-    @Override
+    /*@Override
     public void onDestroy() {
         deviceready = false;
         isInBackground = true;
-    }
+    }*/
 
     /**
      * Executes the request.

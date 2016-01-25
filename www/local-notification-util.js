@@ -251,7 +251,7 @@ exports.getValueFor = function (options) {
  * @param {args*}
  *      The callback's arguments
  */
-exports.fireEvent = function (event) {
+exports.fireEvent = function (event, arguments) {
     var args     = Array.apply(null, arguments).slice(1),
         listener = this._listener[event];
 

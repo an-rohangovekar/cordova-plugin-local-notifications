@@ -584,7 +584,7 @@ public class LocalNotification extends CordovaPlugin {
             params = notification.toString() + "," + params;
         }
         String js = "cordova.plugins.notification.local.core.fireEvent(" +
-                "\"" + event + "\"," + params + ")";
+                "\"" + event + "\"" + ")";
         sendJavascript(js);
     }
 
@@ -597,36 +597,21 @@ public class LocalNotification extends CordovaPlugin {
     private static synchronized void sendJavascript(final String js) {
 
         if (!deviceready) {
-             Log.v("CordovaLog","js inside sendJavascript1:"+js);
             eventQueue.add(js);
             return;
         }
         
         Runnable jsLoader = new Runnable() {
             public void run() {
-                Log.v("CordovaLog","js inside sendJavascript:"+js);
-                if(webView != null)
-                {
-                    Log.v("CordovaLog","inside webview if pre");
-                    super.webView.loadUrl("javascript:" + js);
-                    Log.v("CordovaLog","inside webview if post");
-                }
-                else
-                {
-                    Log.v("CordovaLog","inside webview else pre");
-                    LocalNotification.webView = webView;
-                    super.webView.loadUrl("javascript:" + js);
-                    Log.v("CordovaLog","inside webview else post");
-                }
+                   webView.loadUrl("javascript:" + js);
             }
         };
         try {
             Method post = webView.getClass().getMethod("post",Runnable.class);
             post.invoke(webView,jsLoader);
-             Log.v("CordovaLog","inside try:"+webView);
-             Log.v("CordovaLog","inside try:"+jsLoader);
+           
         } catch(Exception e) {
-            Log.v("CordovaLog","inside catch:"+e);
+           
             ((Activity)(webView.getContext())).runOnUiThread(jsLoader);
         }
     }

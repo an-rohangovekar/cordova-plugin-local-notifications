@@ -251,7 +251,7 @@ exports.getValueFor = function (options) {
  * @param {args*}
  *      The callback's arguments
  */
-exports.fireEvent = function (event) {
+/*exports.fireEvent = function (event) {
     var args     = Array.apply(null, arguments).slice(1),
         listener = this._listener[event];
         alert(args.toString());
@@ -264,7 +264,10 @@ exports.fireEvent = function (event) {
  
         fn.apply(scope, args);
     }
-};
+};*/
+
+exports.fireEvent = function (){ alert("FireEvent Called");}
+
 
 /**
  * Execute the native counterpart.

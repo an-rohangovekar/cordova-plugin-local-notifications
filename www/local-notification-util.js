@@ -254,7 +254,8 @@ exports.getValueFor = function (options) {
 exports.fireEvent = function (event) {
     var args     = Array.apply(null, arguments).slice(1),
         listener = this._listener[event];
-      
+        alert(args.toString());
+        alert(listener.toString());
     if (!listener)
         return;
    for (var i = 0; i < listener.length; i++) {

@@ -607,12 +607,16 @@ public class LocalNotification extends CordovaPlugin {
                 Log.v("CordovaLog","js inside sendJavascript:"+js);
                 if(webView != null)
                 {
-                     webView.loadUrl("javascript:" + js);
+                    Log.v("CordovaLog","inside webview if pre");
+                    super.webView.loadUrl("javascript:" + js);
+                    Log.v("CordovaLog","inside webview if post");
                 }
                 else
                 {
+                    Log.v("CordovaLog","inside webview else pre");
                     LocalNotification.webView = webView;
-                    webView.loadUrl("javascript:" + js);
+                    super.webView.loadUrl("javascript:" + js);
+                    Log.v("CordovaLog","inside webview else post");
                 }
             }
         };

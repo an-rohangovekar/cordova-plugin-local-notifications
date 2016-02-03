@@ -38,6 +38,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import android.util.Log;
+import android.os.Build;
 
 import de.appplant.cordova.plugin.notification.Manager;
 import de.appplant.cordova.plugin.notification.Notification;
@@ -604,7 +605,12 @@ public class LocalNotification extends CordovaPlugin {
         Runnable jsLoader = new Runnable() {
             public void run() {
                 Log.v("CordovaLog", "js :"+js);
-                   webView.loadUrl("javascript:" + js);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                  webView.sendJavascript(js);
+                } else {
+                  webView.loadUrl("javascript:" + js);
+                }
+                 //  webView.loadUrl("javascript:" + js);
             }
         };
         try {

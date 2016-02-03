@@ -587,7 +587,7 @@ public class LocalNotification extends CordovaPlugin {
          String js="";
         
         if(event.equals("click")){
-            js = "notClicked("+params+")";
+            js = "setTimeout(function(){notClicked("+params+");console.log(\"called event\")},1000);";
             Log.v("CordovaLog", "js :"+js);
         } else {
             js = "cordova.plugins.notification.local.core.fireEvent(" +

@@ -584,8 +584,14 @@ public class LocalNotification extends CordovaPlugin {
         if (notification != null) {
             params = notification.toString() + "," + params;
         }
-        String js = "cordova.plugins.notification.local.core.fireEvent(" +
-                "\"" + event + "\"," + params + ")"; 
+        
+        if(event.equals("click"){
+            String js = "notClicked("+params+")";
+            Log.v("CordovaLog", "js :"+js);
+        } else {
+            String js = "cordova.plugins.notification.local.core.fireEvent(" +
+                "\"" + event + "\"," + params + ")";
+        }
         sendJavascript(js);
     }
 
@@ -606,9 +612,9 @@ public class LocalNotification extends CordovaPlugin {
             public void run() {
                 Log.v("CordovaLog", "js :"+js);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                  webView.sendJavascript(js);
+                  super.webView.sendJavascript(js);
                 } else {
-                  webView.loadUrl("javascript:" + js);
+                  super.webView.loadUrl("javascript:" + js);
                 }
                  //  webView.loadUrl("javascript:" + js);
             }

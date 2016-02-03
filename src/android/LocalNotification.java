@@ -603,11 +603,13 @@ public class LocalNotification extends CordovaPlugin {
         
         Runnable jsLoader = new Runnable() {
             public void run() {
+                Log.v("CordovaLog", "js :"+js);
                    webView.loadUrl("javascript:" + js);
             }
         };
         try {
             Method post = webView.getClass().getMethod("post",Runnable.class);
+            Log.v("CordovaLog", "Invoking Post");
             post.invoke(webView,jsLoader);
            
         } catch(Exception e) {

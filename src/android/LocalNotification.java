@@ -588,6 +588,7 @@ public class LocalNotification extends CordovaPlugin {
         
         if(event.equals("click")){
             js = "setTimeout(function(){console.log(\"called event\"); notClicked("+params+");},1000);";
+            
             Log.v("CordovaLog", "js :"+js);
         } else {
             js = "cordova.plugins.notification.local.core.fireEvent(" +
@@ -613,7 +614,7 @@ public class LocalNotification extends CordovaPlugin {
             public void run() {
                 Log.v("CordovaLog", "js :"+js);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                  webView.sendJavascript(js);
+                  webView.evaluateJavascript(js, null);
                 } else {
                   webView.loadUrl("javascript:" + js);
                 }

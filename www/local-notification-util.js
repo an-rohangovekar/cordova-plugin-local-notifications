@@ -252,16 +252,12 @@ exports.getValueFor = function (options) {
  *      The callback's arguments
  */
 exports.fireEvent = function (event) {
-    
-    alert("Inside FireEvent in js");
     var args     = Array.apply(null, arguments).slice(1),
         listener = this._listener[event];
-    alert(args);
-    alert(listener);
-        
+  
     if (!listener)
         return;
-   for (var i = 0; i < listener.length; i++) {
+    for (var i = 0; i < listener.length; i++) {
         var fn    = listener[i][0],
             scope = listener[i][1];
  

@@ -708,10 +708,10 @@
           event, params];
 
     if (deviceready) {
-        //[self.commandDelegate evalJs:js];
-        NSString *eventName = @"notificationClicked";
-        [self.viewController.webView stringByEvaluatingJavaScriptFromString:
-[NSString stringWithFormat:@"setTimeout( function() { cordova.fireDocumentEvent('%@', %@ ) }, 0);", eventName, params]]
+        [self.commandDelegate evalJs:js];
+        //NSString *eventName = @"notificationClicked";
+        //[self.viewController.webView stringByEvaluatingJavaScriptFromString:
+//[NSString stringWithFormat:@"setTimeout( function() { cordova.fireDocumentEvent('%@', %@ ) }, 0);", eventName, params]]
     } else {
         [self.eventQueue addObject:js];
     }
